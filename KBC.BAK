@@ -1,0 +1,1415 @@
+
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<dos.h>
+#include<time.h>
+#include<stdlib.h>
+#include<graphics.h>
+ int x,z;
+char key1;
+ long lastamount=0;
+ static int count;
+ void bground()
+    {
+    setcolor(WHITE);
+     bar3d(10,10,190,180,40,40);
+     bar3d(435,10,610,180,40,40);
+     setcolor(7);
+     settextstyle(10,HORIZ_DIR,7);
+     outtextxy(240,10,"KBC");
+
+     line(70,220,570,220);
+     line(70,280,570,280);
+     line(70,220,40,250);
+     line(40,250,70,280);
+     line(570,220,600,250);
+     line(600,250,570,280);
+     line(40,250,0,250);
+     line(600,250,640,250);
+
+     line(70,300,300,300);
+     line(70,340,300,340);
+     line(70,300,50,320);
+     line(50,320,70,340);
+     line(300,300,320,320);
+     line(300,340,320,320);
+
+
+     line(570,300,340,300);
+     line(570,340,340,340);
+     line(570,300,590,320);
+     line(590,320,570,340);
+     line(340,300,320,320);
+     line(320,320,340,340);
+
+     line(70,340,300,340);
+     line(70,380,300,380);
+     line(70,340,50,360);
+     line(50,360,70,380);
+     line(300,340,320,360);
+     line(300,380,320,360);
+
+     line(570,340,340,340);
+     line(570,380,340,380);
+     line(570,340,590,360);
+     line(590,360,570,380);
+     line(340,340,320,360);
+     line(320,360,340,380);
+     ellipse(240,430,0,360,50,30);
+     ellipse(400,430,0,360,50,30);
+     settextstyle(0,HORIZ_DIR,2);
+     setcolor(BLACK);
+     outtextxy(25,20,"PRESS KEY");
+     settextstyle(0,HORIZ_DIR,1);
+     outtextxy(20,70,"'A' FOR FIRST  OPTION");
+     outtextxy(20,100,"'B' FOR SECOND OPTION");
+     outtextxy(20,130,"'C' FOR THIRD  OPTION");
+     outtextxy(20,160,"'D' FOR FOURTH OPTION");
+       settextstyle(0,HORIZ_DIR,2);
+     setcolor(BLACK);
+     outtextxy(450,20,"PRESS KEY");
+     settextstyle(0,HORIZ_DIR,1);
+     outtextxy(450,40,"TO SELECT LIFELINE");
+     outtextxy(450,80,"'F' FOR 50-50");
+     outtextxy(450,125,"'Q' FOR QUIT ");
+     setcolor(WHITE);
+     settextstyle(0,HORIZ_DIR,2);
+     outtextxy(206,423,"50-50");
+     outtextxy(375,423,"QUIT");
+
+      }
+
+  void fifty()
+		 {
+		      if(x==0)
+		      {      setfillstyle(1,RED);
+			   floodfill(580,320,7);
+			   floodfill(580,365,7);
+			   }
+			   else if(x==1)
+			       {
+				setfillstyle(1,RED);
+			   floodfill(70,365,7);
+			    floodfill(580,365,7);
+			   }
+			   else if(x==2)
+			   {
+			     setfillstyle(1,RED);
+			    floodfill(70,320,7);
+			    floodfill(580,365,7);
+			    }
+			    else if(x==3)
+			    {
+			    setfillstyle(1,RED);
+			    floodfill(70,320,7);
+			    floodfill(580,320,7);
+						      }
+
+			   }
+void amount()
+{            //initially p=0,amount=0;
+	   static long p=0,totalamount=0;
+	   // static float lastamount=0;
+	    p=p+1;
+	    {
+	    if(p==1)
+	   totalamount=5000;
+
+	    else if(p==9)
+	   totalamount=1250000;
+
+	   else if(p>9)
+	      totalamount=2*totalamount;
+
+	    else
+	    totalamount=2*totalamount;
+	     }
+	    gotoxy(25,10);
+	    printf("CONGRATULATIONS!!! YOU WON %.2ld RUPEES",totalamount);
+	    gotoxy(10,10);
+	    printf("\n\n\n\t\t\tPRESS ENTER TO PLAY FOR NEXT QUESTION...");
+	    lastamount=totalamount;
+
+		    }
+	   void wrong()
+	  {
+
+	   outtextxy(130,100,"SORRY BUT YOU HAVE GIVEN WRONG ANSWER");
+	   gotoxy(25,10);
+	   printf("  YOUR FINAL AMOUNT IS %.2ld",lastamount);
+	   printf("\n\n\t\t\tPRESS ENTER TO END THE GAME.... ");
+	   }
+ void check()
+ {
+    key1=getche();
+
+     if(x==0)
+      {
+	  if(key1=='A'|| key1=='a')
+	  {
+	     sound(2100);
+	     delay(200);
+	     nosound();
+	    setfillstyle(1,GREEN);
+	    floodfill(70,320,7);
+	    delay(500);
+
+	    cleardevice();
+	   amount();
+	  }
+	   else if(key1=='b'|| key1=='B')
+	   {
+	     sound(500);
+	      setfillstyle(1,GREEN);
+	    floodfill(70,320,7);
+	    setfillstyle(1,YELLOW);
+	    floodfill(580,320,7);
+	    delay(500);
+	    nosound();
+	    cleardevice();
+	    wrong();
+	    getch();
+	    exit(0);
+		     }
+	   else if(key1=='c'|| key1=='C')
+	    {
+	     sound(500);
+	    setfillstyle(1,GREEN);
+	    floodfill(70,320,7);
+	    setfillstyle(1,YELLOW);
+	    floodfill(70,370,7);
+	    delay(500);
+	    nosound();
+	    cleardevice();
+	    wrong();
+	    getch();
+	    exit(0);
+	     }
+	   else if(key1=='d'|| key1=='D')
+	     {
+	     sound(500);
+	     setfillstyle(1,GREEN);
+	    floodfill(70,320,7);
+	    setfillstyle(1,YELLOW);
+	    floodfill(570,370,7);
+	    delay(500);
+	    nosound();
+	    cleardevice();
+	    wrong();
+	    getch();
+	    exit(0);
+	      }
+	   else if((key1=='f'||key1=='F')&& count==0)
+	   {  sound(1000);
+	      delay(200);
+	      nosound();
+	    count++;
+	     fifty();
+	     again:
+	       key1=getche();
+	     {
+		   if(key1=='A'|| key1=='a')
+		   {
+		    sound(2100);
+		    delay(200);
+		    nosound();
+		    setfillstyle(1,GREEN);
+		    floodfill(70,320,7);
+		    delay(500);
+		    cleardevice();
+		    amount();
+		    }
+		 else if(key1=='c'|| key1=='C')
+		  {
+		   sound(500);
+		   setfillstyle(1,GREEN);
+		   floodfill(70,320,7);
+		   setfillstyle(1,YELLOW);
+		   floodfill(70,370,7);
+		   delay(500);
+		   nosound();
+		   cleardevice();
+		   wrong();
+		   getch();
+		   exit(0);
+		   }
+	 else
+	 {
+	    goto again;
+
+	    }
+	 }
+
+      }
+	   else if(key1=='q'||key1=='Q')
+	   {   sound(1000);
+	       delay(200);
+	       nosound();
+	       cleardevice();
+	       gotoxy(25,10);
+	       printf("YOU HAVE WON %ld RUPEES!!!!",lastamount);
+		delay(2000);
+		exit(0);
+	     }
+	   else
+	   {
+	   check();
+	   }
+	     }
+
+    else if(x==1)
+      {
+       if(key1=='B'||key1=='b')
+	  {   sound(2100);
+	       delay(200);
+	       nosound();
+	    setfillstyle(1,GREEN);
+	    floodfill(580,320,7);
+	    delay(500);
+	    cleardevice();
+	    amount();
+	 }
+       else if(key1=='a'||key1=='A')
+	{     sound(500);
+	      setfillstyle(1,GREEN);
+	    floodfill(580,320,7);
+	      setfillstyle(1,YELLOW);
+	    floodfill(70,320,7);
+	    delay(500);
+	    nosound();
+	    cleardevice();
+	    wrong();
+	    getch();
+	    exit(0);
+
+		 }
+	else if(key1=='c'||key1=='C')
+		{ sound(500);
+		setfillstyle(1,GREEN);
+	    floodfill(580,320,7);
+	    setfillstyle(1,YELLOW);
+	    floodfill(70,370,7);
+	    delay(500);
+	    nosound();
+	    cleardevice();
+	    wrong();
+	    getch();
+	    exit(0);
+
+	    }
+	else if(key1=='d'||key1=='D')
+		{  sound(500);
+		setfillstyle(1,GREEN);
+	    floodfill(580,320,7);
+	    setfillstyle(1,YELLOW);
+	    floodfill(580,370,7);
+	    delay(500);
+	    nosound();
+	    cleardevice();
+	    wrong();
+	    getch();
+	    exit(0);
+
+	    }
+	    else if((key1=='f'||key1=='F')&& count==0)
+	   {   sound(1000);
+	       delay(200);
+	       nosound();
+	      count++;
+	      fifty();
+	     again1:
+	       key1=getche();
+
+		  if(key1=='A'|| key1=='a')
+		    {  sound(2100);
+		       delay(200);
+		       nosound();
+		     setfillstyle(1,GREEN);
+		     floodfill(70,320,7);
+		     delay(500);
+		     cleardevice();
+		     amount();
+
+		     }
+		  else if(key1=='b'|| key1=='B')
+		      { sound(500);
+			setfillstyle(1,GREEN);
+			floodfill(70,320,7);
+			setfillstyle(1,YELLOW);
+			floodfill(580,320,7);
+			delay(500);
+			nosound();
+			cleardevice();
+			wrong();
+			getch();
+			exit(0);
+		      }
+		else
+		    {
+		       goto again1;
+		    }
+
+	       }
+	     else if(key1=='q'||key1=='Q')
+	   {   sound(1000);
+	       delay(200);
+	       nosound();
+	       gotoxy(25,10);
+		printf("YOU HAVE WON %ld RUPEES!!!!",lastamount);
+	       cleardevice();
+	       delay(2000);
+	       exit(0);
+	     }
+	    else
+	    {
+	      check();
+	      }
+	     }
+
+       else if(x==2)
+      {
+       if(key1=='C'||key1=='c')
+	  { sound(2100);
+	    delay(200);
+	    nosound();
+	    setfillstyle(1,GREEN);
+	    floodfill(70,370,7);
+	    delay(500);
+	    cleardevice();
+	    amount();
+	    getch();
+	       }
+	else if(key1=='A'||key1=='a')
+		{ sound(500);
+		setfillstyle(1,GREEN);
+	    floodfill(70,370,7);
+	    setfillstyle(1,YELLOW);
+	    floodfill(70,320,7);
+	    delay(500);
+	    nosound();
+	    cleardevice();
+	    wrong();
+	    getch();
+	    exit(0);
+	    }
+	else if(key1=='B'||key1=='b')
+		{ sound(500);
+		setfillstyle(1,GREEN);
+	    floodfill(70,370,7);
+	    setfillstyle(1,YELLOW);
+	    floodfill(580,320,7);
+	    delay(500);
+	    nosound();
+	    cleardevice();
+	    wrong();
+	    getch();
+	    exit(0);
+	    }
+	else if(key1=='D'||key1=='d')
+		{  sound(500);
+		setfillstyle(1,GREEN);
+	    floodfill(70,370,7);
+	    setfillstyle(1,YELLOW);
+	    floodfill(580,370,7);
+	    delay(500);
+	    nosound();
+	    cleardevice();
+	    wrong();
+	    getch();
+	    exit(0);
+	    }
+	else if((key1=='f'||key1=='F')&&count==0)
+	{  sound(1000);
+	   delay(200);
+	    nosound();
+	   count++;
+	    fifty();
+	    again2:
+	    key1=getche();
+
+	    if(key1=='B'||key1=='b')
+		{        sound(500);
+			setfillstyle(1,GREEN);
+			floodfill(70,370,7);
+			setfillstyle(1,YELLOW);
+			floodfill(580,320,7);
+			delay(500);
+			nosound();
+			cleardevice();
+			wrong();
+			getch();
+			exit(0);
+		 }
+	     else if(key1=='C'||key1=='c')
+		    {   sound(2100);
+		       delay(200);
+		       nosound();
+		       setfillstyle(1,GREEN);
+		       floodfill(70,370,7);
+		       delay(500);
+		       cleardevice();
+		       amount();
+		       getch();
+		      }
+	    else
+		{
+		goto again2;
+
+		}
+
+	}
+
+	 else if(key1=='q'||key1=='Q')
+	   { sound(1000);
+	     delay(200);
+	     nosound();
+	     cleardevice();
+	     gotoxy(25,10);
+	      printf("YOU HAVE WON %ld RUPEES!!!!",lastamount);
+	     delay(2000);
+	     exit(0);
+	     }
+	    else
+	    {
+	    check();
+	    }
+
+      }
+
+
+	else if(x==3)
+      {
+       if(key1=='C'||key1=='c')
+	  {  sound(2100);
+	    delay(200);
+	    nosound();
+	    setfillstyle(1,GREEN);
+	    floodfill(70,370,7);
+	    delay(500);
+	    cleardevice();
+	    amount();
+	     }
+       else if(key1=='A'||key1=='a')
+	   {  sound(500);
+	      setfillstyle(1,GREEN);
+	    floodfill(70,370,7);
+	    setfillstyle(1,YELLOW);
+	    floodfill(70,320,7);
+	    delay(500);
+	    nosound();
+	    cleardevice();
+	    wrong();
+	    getch();
+	    exit(0);
+	    }
+       else if(key1=='b'||key1=='B')
+	{
+	       sound(500);
+		setfillstyle(1,GREEN);
+	    floodfill(70,370,7);
+	    setfillstyle(1,YELLOW);
+	    floodfill(580,320,7);
+	    delay(500);
+	     nosound();
+	    cleardevice();
+	    wrong();
+	    getch();
+	    exit(0);
+	    }
+	else if(key1=='d'||key1=='D')
+		{ sound(500);
+		setfillstyle(1,GREEN);
+	    floodfill(70,370,7);
+	    setfillstyle(1,YELLOW);
+	    floodfill(580,370,7);
+	    delay(500);
+	     nosound();
+	    cleardevice();
+	    wrong();
+	   getch();
+	   exit(0);
+	    }
+	else if((key1=='f'||key1=='F')&&count==0)
+	{ sound(1000);
+	  delay(200);
+	  nosound();
+	  count++;
+	  fifty();
+	  again3:
+	  key1=getche();
+	   if(key1=='C'||key1=='c')
+	      { sound(2100);
+	       delay(200);
+	       nosound();
+	       setfillstyle(1,GREEN);
+	       floodfill(70,370,7);
+	       delay(500);
+	       cleardevice();
+	       amount();
+	       }
+	   else if(key1=='d'||key1=='D')
+		{    sound(500);
+		    setfillstyle(1,GREEN);
+		    floodfill(70,370,7);
+		    setfillstyle(1,YELLOW);
+		    floodfill(580,370,7);
+		    delay(500);
+		    nosound();
+		   cleardevice();
+		   wrong();
+		   getch();
+		   exit(0);
+		}
+	   else
+	       {
+		goto again3;
+	      }
+
+	}
+	  else if(key1=='q'||key1=='Q')
+	   {  sound(1000);
+	     delay(200);
+	     nosound();
+	     cleardevice();
+	     gotoxy(25,10);
+	      printf("YOU HAVE WON %ld RUPEES!!!!",lastamount);
+	     delay(2000);
+	     exit(0);
+	     }
+	  else
+	  {
+	   check();
+	   }
+
+	   }
+      }
+
+void main()
+{
+int i,k=420,y;
+char name[5],key,key1;
+time_t t;
+   int gdriver = DETECT, gmode, errorcode;
+
+   initgraph(&gdriver, &gmode,"");
+
+   cleardevice();
+
+setcolor(BLUE);
+ for(i=90;i<=95;i++)
+   {
+   circle(320,150,i);
+     }
+    setcolor(BLACK);
+   circle(320,150,105);
+
+   line(310,140,320,140);
+   line(320,140,330,150);
+   line(330,150,320,160);
+   line(320,160,310,160);
+   line(310,160,300,150);
+   line(300,150,310,140);
+
+   setcolor(BLUE);
+   settextstyle(TRIPLEX_FONT,HORIZ_DIR,4.5);
+
+   outtextxy(240,130,"CROREPATI");
+    setcolor(WHITE);
+   settextstyle(4,HORIZ_DIR,5);
+
+   outtextxy(65,320,"WELCOME TO THE GAME");
+
+   outtextxy(50,370,"KON BANEGA CROREPATI");
+
+   settextstyle(0,HORIZ_DIR,2);
+
+   outtextxy(95,440,"PRESS ENTER TO CONTINUE.......");
+    while(!kbhit())
+   {
+   setcolor(random(16));
+   circle(275,110,22);
+   circle(300,100,22);
+   circle(325,98,22);
+   circle(350,105,22);
+   circle(370,112,20);
+   circle(275,190,22);
+   circle(300,200,22);
+   circle(325,202,22);
+   circle(350,195,22);
+   circle(370,188,20);
+
+    for(i=106;i<=130;i++)
+     {
+   circle(320,150,i);
+   }
+
+
+   }
+   getch();
+   cleardevice();
+
+     setbkcolor(BLUE);
+  setcolor(WHITE);
+   settextstyle(0,HORIZ_DIR,3);
+   outtextxy(200,240,"loading");
+   for(i=380;i<=k;i+=10)
+   {
+     outtextxy(i,240,".");
+     delay(100);
+     }
+     cleardevice();
+   setcolor(WHITE);
+   settextstyle(1,HORIZ_DIR,2);
+   outtextxy(50,120,"ENTER PLAYER'S NAME :");
+   gotoxy(40,9);
+   scanf("%s",&name);
+   sound(2100);
+    delay(100);
+    nosound();
+
+   outtextxy(50,280,"PRESS 'A 'FOR EASY LEVEL :");
+   outtextxy(50,300,"PRESS 'B' FOR MEDIUM LEVEL :");
+   outtextxy(50,320,"PRESS 'C' FOR HARD LEVEL :");
+   printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n       ENTER THE KEY :",key);
+
+   key=getche();
+   sound(2100);
+   delay(100);
+   nosound();
+   if(key=='a'||key=='A'||key=='b'||key=='B'||key=='C'||key=='c')
+   {
+
+      cleardevice();
+      bar3d(10,10,280,440,40,60);
+       setcolor(BLACK);
+       settextstyle(0,HORIZ_DIR,2.5);
+       outtextxy(35,35,"INSTRUCTIONS");
+       setcolor(BLACK);
+       settextstyle(7,HORIZ_DIR,2);
+       outtextxy(25,60,"1. THERE ARE TOTAL");
+       outtextxy(30,80," 12 QUESTIONS");
+       outtextxy(25,120,"2. TOTAL PRIZE MONEY");
+       outtextxy(30,140,"IS 1 CRORE");
+       outtextxy(25,180," 3. THERE IS ONE");
+       outtextxy(30,200," LIFELINE:50-50.");
+       outtextxy(25,240,"4. 50-50 CAN BE USED");
+       outtextxy(30,260," ONLY ONCE.");
+       outtextxy(25,300,"5.THERE IS QUIT");
+       outtextxy(30,320," OPTION BY WHICH");
+       outtextxy(30,340,"YOU CAN QUIT GAME");
+       outtextxy(30,360," AT ANY STAGE.");
+
+ for(i=455;i>=0;i=i-40)
+ {
+ line(400,5,600,5);
+ line(400,5,385,20);
+ line(385,20,400,35);
+ line(400,35,600,35);
+ line(600,35,615,20);
+ line(615,20,600,5);
+ settextstyle(1,HORIZ_DIR,1);
+ outtextxy(430,10,"Rs1,00,00,000" );
+
+ line(400,45,600,45);
+ line(400,45,385,60);
+ line(400,75,385,60);
+ line(400,75,600,75);
+ line(600,75,615,60);
+ line(615,60,600,45);
+ settextstyle(1,HORIZ_DIR,1);
+ outtextxy(430,48.5,"Rs50,00,000" );
+
+ line(400,85,600,85);
+ line(400,85,385,100);
+ line(385,100,400,115);
+ line(400,115,600,115);
+ line(600,115,615,100);
+ line(615,100,600,85);
+ settextstyle(1,HORIZ_DIR,1);
+ outtextxy(430,87,"Rs25,00,000" );
+
+
+ line(400,125,600,125);
+ line(400,125,385,140);
+ line(385,140,400,155);
+ line(400,155,600,155);
+ line(600,155,615,140);
+ line(615,140,600,125);
+ settextstyle(1,HORIZ_DIR,1);
+ outtextxy(430,128,"Rs12,50,000" );
+
+
+ line(400,165,600,165);
+ line(400,165,385,180);
+ line(385,180,400,195);
+ line(400,195,600,195);
+ line(600,195,615,180);
+ line(615,180,600,165);
+ settextstyle(1,HORIZ_DIR,1);
+ outtextxy(430,166,"Rs6,40,000" );
+
+
+ line(400,205,600,205);
+ line(400,205,385,220);
+ line(385,220,400,235);
+ line(400,235,600,235);
+ line(600,235,615,220);
+ line(615,220,600,205);
+ settextstyle(1,HORIZ_DIR,1);
+ outtextxy(430,206,"Rs3,20,000" );
+
+
+ line(400,245,600,245);
+ line(400,245,385,260);
+ line(385,260,400,270);
+ line(400,270,600,270);
+ line(600,270,615,260);
+ line(615,260,600,245);
+ settextstyle(1,HORIZ_DIR,1);
+ outtextxy(430,246,"Rs1,60,000" );
+
+
+ line(400,280,600,280);
+ line(400,280,385,295);
+ line(385,295,400,310);
+ line(400,310,600,310);
+ line(600,310,615,295);
+ line(615,295,600,280);
+ settextstyle(1,HORIZ_DIR,1);
+ outtextxy(430,320,"Rs40,000" );
+
+
+ line(400,320,600,320);
+ line(400,320,385,335);
+ line(385,335,400,350);
+ line(400,350,600,350);
+ line(600,350,615,335);
+ line(615,335,600,320);
+ settextstyle(1,HORIZ_DIR,1);
+ outtextxy(430,282.5,"Rs80,000" );
+
+ line(400,360,600,360);
+ line(400,360,385,375);
+ line(385,375,400,390);
+ line(400,390,600,390);
+ line(600,390,615,375);
+ line(615,375,600,360);
+ settextstyle(1,HORIZ_DIR,1);
+ outtextxy(430,360,"Rs20,000" );
+
+ line(400,400,600,400);
+ line(400,400,385,415);
+ line(385,415,400,430);
+ line(400,430,600,430);
+ line(600,430,615,415);
+ line(615,415,600,400);
+ settextstyle(1,HORIZ_DIR,1);
+ outtextxy(430,400,"Rs10,000" );
+
+ line(400,440,600,440);
+ line(400,440,385,455);
+ line(385,455,400,470);
+ line(400,470,600,470);
+ line(600,470,615,455);
+ line(615,455,600,440);
+ settextstyle(1,HORIZ_DIR,1);
+ setfillstyle(1,LIGHTGRAY);
+ floodfill(410,i,WHITE);
+ sound(2300);
+ delay(100);
+ nosound();
+ outtextxy(430,440,"Rs5,000" );
+ delay(100);
+ }
+ line(400,5,600,5);
+ line(400,5,385,20);
+ line(385,20,400,35);
+ line(400,35,600,35);
+ line(600,35,615,20);
+ line(615,20,600,5);
+ settextstyle(1,HORIZ_DIR,1);
+ outtextxy(430,10,"Rs1,00,00,000" );
+
+      cleardevice();
+     setbkcolor(BLACK);
+
+     bground();
+     {
+    srand((unsigned) time(&t));
+    x=rand()%4;
+     switch(x)
+     {
+     case 0:
+      {	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q1. WHO IS THE FIRST INDIAN PLAYER TO SCORE ");
+	outtextxy(75,245,"    CENTURY IN ALL THREE INTERNATIONAL FORMATS?");
+	outtextxy(75,305,"A. SURESH RAINA");
+	outtextxy(350,305,"B. VIRAT KOHLI");
+	outtextxy(75,348,"C. GAUTAM GAMBHIR");
+	outtextxy(350,348,"D. VIRENDAR SEHWAG"); }
+	break;
+
+
+     case 1:
+    { setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+
+	outtextxy(75,220,"Q1. WHO IS THE FIRST PRESIDENT OF INDIA AFTER ");
+	outtextxy(75,245,"    INDEPENDENCE?");
+	outtextxy(75,305,"A. JAWAHARLAL NEHRU");
+	outtextxy(350,305,"B. DR.RAJENDRA PRASAD");
+	outtextxy(75,348,"C. MAHATAMA GANDHI");
+	outtextxy(350,348,"D. LALA LAJPAT RAI");}
+
+	break;
+     case 2:
+     { 	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,230,"Q1. WHAT IS THE CAPITAL OF AUSTRALIA ? ");
+	outtextxy(75,305,"A. NEW DELHI");
+	outtextxy(350,305,"B. SYDNEY");
+	outtextxy(75,348,"C. CANBERRA");
+	outtextxy(350,348,"D.PRETORIA "); }
+	break;
+
+       case 3:
+
+       {  	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q1. THE INTERSECTING LINES DRAWN ON MAPS AND");
+	outtextxy(75,240,"    GLOBES ARE ? ");
+	outtextxy(75,305,"A. LATITUDES");
+	outtextxy(350,305,"B. LONGITUDES");
+	outtextxy(75,348,"C. GEOGRAPHIC GRIDS");
+	outtextxy(350,348,"D.EQUATOR ");  }
+	break;
+		 }
+       //	  char key1;
+	//  key1=getche();
+	   check();
+	   getch();
+	   cleardevice();
+
+       }
+     }
+
+
+
+	 bground();
+    srand((unsigned) time(&t));
+     x=rand()%3;
+     switch(x)
+     {
+     case 0:
+      {	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q2. WHICH OF THESE YOGA ASANAS ARE PERFORMED ");
+	outtextxy(75,245,"   WHILE STANDING?");
+	outtextxy(75,305,"A. NATARAJASANA");
+	outtextxy(350,305,"B. SHAVASANA");
+	outtextxy(75,348,"C. PADMASANA");
+	outtextxy(350,348,"D. HALASANA"); }
+	break;
+
+
+     case 1:
+    { setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+
+	outtextxy(75,220,"Q2.WHEN SOMEONE SENDS YOU AN EMAIL IN WHICH  ");
+	outtextxy(75,245,"   FOLDER USUALLY IT LANDS?");
+	outtextxy(75,305,"A. DRAFTS");
+	outtextxy(350,305,"B. INBOX");
+	outtextxy(75,348,"C. TRASH");
+	outtextxy(350,348,"D. OUTBOX");}
+
+	break;
+     case 2:
+     { 	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q2.IN WHICH DIRECTION DOES NEEDLE OF COMPASS ");
+	outtextxy(75,245,"  POINTS?");
+	outtextxy(75,305,"A. EAST");
+	outtextxy(350,305,"B. WEST");
+	outtextxy(75,348,"C. NORTH");
+	outtextxy(350,348,"D. SOUTH"); }
+	     break;
+	}
+	check();
+	getch();
+	cleardevice();
+
+
+	 bground();
+    srand((unsigned) time(&t));
+     x=rand()%3;
+     switch(x)
+     {
+      case 0:
+      {	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q3. WHICH OF THESE FILMS IS BASED ON THE LIFE OF A ");
+	outtextxy(75,245,"    5 TIMES WORLD CHAMPIONSHIP WINNER?");
+	outtextxy(75,305,"A. MARY COM");
+	outtextxy(350,305,"B. SAAHEB");
+	outtextxy(75,348,"C. PAAN SINGH TOMAR");
+	outtextxy(350,348,"D. BHAAG MILKHA BHAAG"); }
+	break;
+
+
+     case 1:
+    { setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+
+	outtextxy(75,220,"Q3.WHICH OF THESE AUTHORS IS A MECHANICAL  ");
+	outtextxy(75,245,"   ENGINEER BY PROFESSION?");
+	outtextxy(75,305,"A. AMISH TRIPATHI");
+	outtextxy(350,305,"B. CHETAN BHAGAT");
+	outtextxy(75,348,"C. DEVDUTT PATTANAK");
+	outtextxy(350,348,"D. ASWIN SANGHI");}
+
+	break;
+       case 2:
+     { 	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q3.WHICH OF THESE COUNTRIES HAS NARENDRA MODI");
+	outtextxy(75,245,"  NOT VISITED AS PRIME MINISTER OF INDIA?");
+	outtextxy(75,305,"A. BRAZIL");
+	outtextxy(350,305,"B. BHUTAN");
+	outtextxy(75,348,"C. BANGLADESH");
+	outtextxy(350,348,"D. JAPAN"); }
+	     break;
+	}
+	check();
+	getch();
+	cleardevice();
+
+
+		 bground();
+    srand((unsigned) time(&t));
+     x=rand()%3;
+     switch(x)
+     {
+     case 0:
+      {	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q4. FOR EXCELLENCE IN WHICH SPORT DID YOGESHWAR ");
+	outtextxy(75,245,"    DUTT WIN RAJIV GANDHI KHEL RATNA AWARD?");
+	outtextxy(75,305,"A. WRESTLING");
+	outtextxy(350,305,"B. BOXING");
+	outtextxy(75,348,"C. SHOOTING");
+	outtextxy(350,348,"D. ARCHERY"); }
+	break;
+
+
+     case 1:
+    { setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+
+	outtextxy(75,220,"Q4. AFTER THE BATTLE OF KURUSHETRA WHO GAVE  ");
+	outtextxy(75,245,"   YUDHISTHIRA LESSON ON RAJ DHARMA?");
+	outtextxy(75,305,"A. KRISHNA");
+	outtextxy(350,305,"B. BHISHMA");
+	outtextxy(75,348,"C. VED VYAS");
+	outtextxy(350,348,"D. VIDUR");}
+
+	break;
+     case 2:
+     { 	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q4. WHO FOUNDED THE ORGANISATION BACHPAN BACHAO");
+	outtextxy(75,245,"    ANDOLAN IN 1980?");
+	outtextxy(75,305,"A. DR. PRAKASH AMTE");
+	outtextxy(350,305,"B. SHANTHA SINHA");
+	outtextxy(75,348,"C. KAILASH SATYARTHI");
+	outtextxy(350,348,"D. RIPPAN KAPOOR"); }
+	     break;
+	}
+	check();
+	getch();
+	cleardevice();
+
+
+		 bground();
+    srand((unsigned) time(&t));
+     x=rand()%3;
+     switch(x)
+     {
+     case 0:
+      {	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q5. WHO IS THE HEAD OF THE NATIONAL DISASTER ");
+	outtextxy(75,245,"    MANAGEMENT AUTHORITY OF INDIA?");
+	outtextxy(75,305,"A. PRIME MINISTER");
+	outtextxy(350,305,"B.ENVIRONMENT MINISTER");
+	outtextxy(75,348,"C. PRESIDENT");
+	outtextxy(350,348,"D. UNION HOME MINISTER"); }
+	break;
+
+
+     case 1:
+    { setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+
+	outtextxy(75,220,"Q5. THE 2014 NOBEL PRIZE FOR PHYSICS WAS   ");
+	outtextxy(75,245,"   AWARDED FOR THE INVENTION OF WHAT?");
+	outtextxy(75,305,"A. CCD SENSOR");
+	outtextxy(350,305,"B. LIGHT EMITTING DIODE");
+	outtextxy(75,348,"C. GRAPHENE");
+	outtextxy(350,348,"D. ROBOTIC EXOSKELETON");}
+
+	break;
+     case 2:
+     { 	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q5.THE RULER OF WHICH OF THESE KINGDOMS WAS");
+	outtextxy(75,245,"   CALLED RANA OR MAHARANA?");
+	outtextxy(75,305,"A. KASHMIR");
+	outtextxy(350,305,"B. JAIPUR");
+	outtextxy(75,348,"C. MEWAR");
+	outtextxy(350,348,"D. JUNAGARH"); }
+	     break;
+	}
+	check();
+	getch();
+	cleardevice();
+
+
+		 bground();
+    srand((unsigned) time(&t));
+     x=rand()%3;
+     switch(x)
+     {
+     case 0:
+      {	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q6.FROM WHERE DID THE SUPREME COURT OF INDIA ");
+	outtextxy(75,245,"FUNTIONS FOR 8 YRS BEFORE ITS PRESENT BUILDING?");
+	outtextxy(75,305,"A. PARLIAMENT HOUSE");
+	outtextxy(350,305,"B. METACAFFE HOUSE");
+	outtextxy(75,348,"C. RASHTRAPATI BHAWAN");
+	outtextxy(350,348,"D. IRWIN AMPHITHEATRE"); }
+	break;
+
+
+     case 1:
+    { setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+
+	outtextxy(75,220,"Q6.WHICH PARAM VEER CHAKRA RECIPIENT WAS THOUGHT");
+	outtextxy(75,245,"   TO BE DEAD IN 1962 BUT RETURNED BACK ALIVE?");
+	outtextxy(75,305,"A. KARAM SINGH");
+	outtextxy(350,305,"B. DHAN SINGH THAPA");
+	outtextxy(75,348,"C. JADUNATH SINGH");
+	outtextxy(350,348,"D. GURBACHAN SINGH");}
+
+	break;
+     case 2:
+     { 	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q3.THE OUTBREAK OF WHICH OF THE DISEASES IS ");
+	outtextxy(75,245,"   TRIGGERED BY THE RAINY SEASON?");
+	outtextxy(75,305,"A. HIV INFECTION");
+	outtextxy(350,305,"B. TUBERCULOSIS");
+	outtextxy(75,348,"C. DENGUE FEVER");
+	outtextxy(350,348,"D. CHICKEN POX"); }
+	     break;
+	}
+	check();
+	getch();
+	cleardevice();
+
+
+
+		 bground();
+    srand((unsigned) time(&t));
+     x=rand()%3;
+     switch(x)
+     {
+     case 0:
+      {	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q7. KATHIAWARI,MARWARI AND BHUTIA ARE ALL ");
+	outtextxy(75,245,"   BREEDS OF WHICH ANIMAL FOUND IN INDIA?");
+	outtextxy(75,305,"A. HORSE");
+	outtextxy(350,305,"B. CAMEL");
+	outtextxy(75,348,"C. COW");
+	outtextxy(350,348,"D. BULL"); }
+	break;
+
+
+     case 1:
+    { setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+
+	outtextxy(75,220,"Q7. THE SPICE SAFFRON IS OBTAINED FROM WHICH  ");
+	outtextxy(75,245,"     FLOWER?");
+	outtextxy(75,305,"A.  RHODODENDRON");
+	outtextxy(350,305,"B.  CROCUS");
+	outtextxy(75,348,"C. TULIP");
+	outtextxy(350,348,"D.  LADY'S SLIPPER");}
+
+	break;
+     case 2:
+     { 	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q7. WITH REFERENCE TO VEHICLES,WHICH OF THESE IS ");
+	outtextxy(75,245,"   ADVISED TO BE USED AT NIGHT?");
+	outtextxy(75,305,"A. HORN");
+	outtextxy(350,305,"B. HAND BRAKE");
+	outtextxy(75,348,"C. DIPPER");
+	outtextxy(350,348,"D. POWER WINDOW"); }
+	     break;
+	}
+	check();
+	getch();
+	cleardevice();
+
+
+
+		 bground();
+    srand((unsigned) time(&t));
+     x=rand()%3;
+     switch(x)
+     {
+     case 0:
+      {	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q8. WHO WAS APPOINTED AS THE CHIEF JUSTICE OF  ");
+	outtextxy(75,245,"    INDIA IN 2014?");
+	outtextxy(75,305,"A. H L DATTU");
+	outtextxy(350,305,"B. M.Y EQBAL");
+	outtextxy(75,348,"C. R.M LODHA");
+	outtextxy(350,348,"D. P SHASHASIVAM"); }
+	break;
+
+
+     case 1:
+    { setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+
+	outtextxy(75,220,"Q8. THE NAME OF WHICH OF THESE CITIES MEANS A  ");
+	outtextxy(75,245,"     FORT?");
+	outtextxy(75,305,"A.  AMBIKAPUR");
+	outtextxy(350,305,"B.  DURG");
+	outtextxy(75,348,"C. DANTEWADA");
+	outtextxy(350,348,"D.  JAGDAIPUR");}
+
+	break;
+     case 2:
+     { 	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q8. IN WHICH COUNTRY IS THE HISTORIC CITY OF " );
+	outtextxy(75,245,"      BUKHARA?");
+	outtextxy(75,305,"A. AFGHANISTAN");
+	outtextxy(350,305,"B. KAZAKISTAN");
+	outtextxy(75,348,"C. UZBEKISTAN");
+	outtextxy(350,348,"D. PAKISTAN"); }
+	     break;
+	}
+	check();
+	getch();
+	cleardevice();
+
+
+
+
+		 bground();
+    srand((unsigned) time(&t));
+     x=rand()%3;
+     switch(x)
+     {
+     case 0:
+      {	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q9. WHICH OF THESE NAMES IS A PART OF A PLAY BY ");
+	outtextxy(75,245,"     KALIDAS?");
+	outtextxy(75,305,"A. URWASHI");
+	outtextxy(350,305,"B. MENAKA");
+	outtextxy(75,348,"C. RAMBHA");
+	outtextxy(350,348,"D. TILOTTAMA"); }
+	break;
+
+
+     case 1:
+    { setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+
+	outtextxy(75,220,"Q9. WHICH OF THESE ACTRESSES IS UDAY CHOPRA'S   ");
+	outtextxy(75,245,"   BHABHI?");
+	outtextxy(75,305,"A.  KAJOL");
+	outtextxy(350,305,"B.  RANI MUKHERJEE");
+	outtextxy(75,348,"C. VIDYA BALAN");
+	outtextxy(350,348,"D.  RAVEENA TANDON");}
+
+	break;
+     case 2:
+     { 	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q9. THE RULER OF WHICH OF THESE KINGDOMS WAS ");
+	outtextxy(75,245,"    CALLED RANA OR MAHARANA?");
+	outtextxy(75,305,"A. KASHMIR");
+	outtextxy(350,305,"B. JAIPUR");
+	outtextxy(75,348,"C. MEWAR");
+	outtextxy(350,348,"D. JUNAGARH"); }
+	     break;
+	}
+	check();
+	getch();
+	cleardevice();
+
+		 bground();
+    srand((unsigned) time(&t));
+     x=rand()%3;
+     switch(x)
+     {
+     case 0:
+      {	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q10. WHO ADMINISTERED THE OATH OF FIRST PRESIDENT ");
+	outtextxy(75,245,"   DR. RAJENDRA PRASAD ON 26TH JANUARY 1950?");
+	outtextxy(75,305,"A. HIRALAL KANIA");
+	outtextxy(350,305,"B. LORD MOUNTBATTEN");
+	outtextxy(75,348,"C. SUKUMAR SEN");
+	outtextxy(350,348,"D. C RAJAGOPALCHARYA"); }
+	break;
+
+
+     case 1:
+    { setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+
+	outtextxy(75,220,"Q10. THE FIRST OF WHICH OF THESE DISEASES IN   ");
+	outtextxy(75,245,"   HUMANS WAS REPORTED IN HONG KONG IN 1997?");
+	outtextxy(75,305,"A.  YELLOW FEVER");
+	outtextxy(350,305,"B.  BIRD FLU");
+	outtextxy(75,348,"C.  CHIKUNGUNIA");
+	outtextxy(350,348,"D.  MAD COW DISEASE");}
+
+	break;
+     case 2:
+     { 	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q10. WITH THE BREAK OF THE SOVIET UNION IN 1991 ");
+	outtextxy(75,245,"    CRIMERIA BECAME PART OF WHICH COUNTRY?");
+	outtextxy(75,305,"A. RUSSIA");
+	outtextxy(350,305,"B. ARMERIA");
+	outtextxy(75,348,"C. UKRAINE");
+	outtextxy(350,348,"D. BELARUS"); }
+	     break;
+	}
+	check();
+	getch();
+	cleardevice();
+
+
+
+		 bground();
+    srand((unsigned) time(&t));
+     x=rand()%3;
+     switch(x)
+     {
+     case 0:
+      {	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q11. THE SURFACE OF WHICH OF THESE PLANETS IS ");
+	outtextxy(75,245,"   NOT SOLID?");
+	outtextxy(75,305,"A. JUPITER");
+	outtextxy(350,305,"B. VENUS");
+	outtextxy(75,348,"C. MARS");
+	outtextxy(350,348,"D. MERCURY"); }
+	break;
+
+
+     case 1:
+    { setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+
+	outtextxy(75,220,"Q11.IN WHICH SPORT HAS JITU RAI WON INDIVIDUAL   ");
+	outtextxy(75,245,"  GOLD MEDAL IN INTERNATIONAL SPORTS ?");
+	outtextxy(75,305,"A.  WEIGHT LIFTING");
+	outtextxy(350,305,"B. SHOOTING");
+	outtextxy(75,348,"C.  BOXING");
+	outtextxy(350,348,"D. JUDO");}
+
+	break;
+     case 2:
+     { 	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q11.  IN THE TITLE OF A STORY BY MUNSHI ");
+	outtextxy(75,245,"    PREMCHAND WHO WAS CALLED PARMESHWAR?");
+	outtextxy(75,305,"A. PITA");
+	outtextxy(350,305,"B. PATI");
+	outtextxy(75,348,"C. PANCH");
+	outtextxy(350,348,"D. PAHELWAN"); }
+	     break;
+	}
+	check();
+	getch();
+	cleardevice();
+
+
+
+
+		 bground();
+    srand((unsigned) time(&t));
+     x=rand()%3;
+     switch(x)
+     {
+     case 0:
+      {	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q12. IN MYTHOLOGY, WHICH SON OF YAYATI EXCHANGED ");
+	outtextxy(75,245,"   HIS YOUTH FOR HIS FATHER'S OLD AGE ?");
+	outtextxy(75,305,"A. PURU ");
+	outtextxy(350,305,"B. YADU");
+	outtextxy(75,348,"C. TURVASU");
+	outtextxy(350,348,"D. DRUHYU"); }
+	break;
+
+
+     case 1:
+    { setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+
+	outtextxy(75,220,"Q12. WHICH OF THESE COUNTRIES HAS BEEN RULED BY    ");
+	outtextxy(75,245,"   THE WANGCHUCKS SINCE 1907 ?");
+	outtextxy(75,305,"A.  THAILAND");
+	outtextxy(350,305,"B.  BHUTAN");
+	outtextxy(75,348,"C.  CAMBODIA");
+	outtextxy(350,348,"D.  BHUNEI");}
+
+	break;
+     case 2:
+     { 	setcolor(WHITE);
+	settextstyle(1,HORIZ_DIR,1);
+	outtextxy(75,220,"Q12. WHICH OF THESE MEDICAL TECHNIQUES IS ALSO  ");
+	outtextxy(75,245,"   USED FOR SECURITY IN PUBLIC PLACESM ?");
+	outtextxy(75,305,"A. ECG");
+	outtextxy(350,305,"B. MRI");
+	outtextxy(75,348,"C. X-RAY");
+	outtextxy(350,348,"D. ULTRASOUND"); }
+	     break;
+	}
+	check();
+	delay(1000);
+	cleardevice();
+	while(!kbhit())
+	{
+	setbkcolor(random(16));
+	delay(50);
+	settextstyle(5,HORIZ_DIR,6);
+	outtextxy(20,120,"CONGRATULATIONS!!!!!!");
+	settextstyle(5,HORIZ_DIR,5);
+	outtextxy(60,220,"YOU ARE THE WINNER ");
+	outtextxy(60,270,"OF THIS KBC SEASON");
+	}
+
+
+   getch();
+   closegraph();
+  }
+
+
